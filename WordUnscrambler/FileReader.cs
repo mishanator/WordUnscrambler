@@ -9,12 +9,18 @@ namespace WordUnscrambler
 {
     class FileReader
     {
-        public string[] Read(string filename)
+        public string[] Read(string fileName)
         {
-            // Implement this.
-
-            return null;
-
+            string[] contents;
+            try
+            {
+                contents = File.ReadAllLines(fileName);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return contents;
         }
     }
 }

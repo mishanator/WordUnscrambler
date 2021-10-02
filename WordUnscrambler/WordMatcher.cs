@@ -14,16 +14,27 @@ namespace WordUnscrambler
 
             foreach (var scrambledWord in scrambledWords)
             {
+
                 foreach (var word in wordList)
                 {
                     //scrambledWord already matches word
                     if (scrambledWord.Equals(word, StringComparison.OrdinalIgnoreCase)) {
                         matchedWords.Add(BuildMatchedWord(scrambledWord, word));
+                       
                     }
                     else
                     {
+                        var scrambledWordArray = scrambledWord.ToCharArray();
+                        var wordArray = word.ToCharArray();
+                        Array.Sort(scrambledWordArray);
+                        Array.Sort(wordArray);
+                        var sortedScrambled = new String(scrambledWordArray);
+                        var sortedWord = new String(wordArray);
+                        if (sortedScrambled.Equals(sortedWord, StringComparison.OrdinalIgnoreCase))
+                            matchedWords.Add(BuildMatchedWord(scrambledWord, word));
                     }
                 }
+                return matchedWords;
             }
 
             MatchedWord BuildMatchedWord(string scrambledWord, string word)
