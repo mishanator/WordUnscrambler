@@ -12,9 +12,7 @@ namespace WordUnscrambler
         {
             List<MatchedWord> matchedWords = new List<MatchedWord>();
 
-            foreach (var scrambledWord in scrambledWords)
-            {
-
+            foreach (string scrambledWord in scrambledWords)
                 foreach (var word in wordList)
                 {
                     //scrambledWord already matches word
@@ -37,7 +35,7 @@ namespace WordUnscrambler
                 return matchedWords;
             }
 
-            MatchedWord BuildMatchedWord(string scrambledWord, string word)
+             MatchedWord BuildMatchedWord(string scrambledWord, string word)
             {
                 MatchedWord matchedWord = new MatchedWord
                 {
@@ -46,10 +44,11 @@ namespace WordUnscrambler
                 };
 
                 return matchedWord;
+                
             }
+          
 
-            return matchedWords;
-        } 
-    }
+     } 
+ }
 
-}
+

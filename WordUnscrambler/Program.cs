@@ -61,7 +61,7 @@ namespace WordUnscrambler
                         Console.WriteLine("The entered option was not recognized.");
                         break;
                 }
-                }
+            }
         }
 
         private static void ExecuteScrambledWordsInFileScenario()
@@ -77,7 +77,8 @@ namespace WordUnscrambler
            
             string[] scrambledWords = userInput.Split(',');
             
-           DisplayMatchedUnscrambledWords(scrambledWords);
+                DisplayMatchedUnscrambledWords(scrambledWords);
+            
 
         }
 
@@ -91,8 +92,8 @@ namespace WordUnscrambler
             
             //call a word matcher method to get a list of structs of matched words.
             List<MatchedWord> matchedWords = _wordMatcher.Match(scrambledWords, wordList);
-            if (matchedWords.Any())
-            {
+            
+            if (matchedWords.Any()){
                 foreach (var match in matchedWords)
                 {
                     Console.WriteLine("your word: "+match.ScrambledWord+ " Matched Word: " +  match.Word);
