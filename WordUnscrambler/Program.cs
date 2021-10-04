@@ -19,46 +19,46 @@ namespace WordUnscrambler
             {
                 try
                 {
-                    Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
+                    Console.WriteLine(Constants.HomeMsg);
 
-                    String option = Console.ReadLine() ?? throw new Exception("String is empty");
+                    String option = Console.ReadLine() ?? throw new Exception(Constants.EmptyStringErrorMsg);
 
                     switch (option.ToUpper())
                     {
-                        case "F":
-                            Console.WriteLine("Enter full path including the file name: ");
+                        case Constants.File:
+                            Console.WriteLine(Constants.CaseFMsg);
                             ExecuteScrambledWordsInFileScenario();
                             break;
-                        case "M":
-                            Console.WriteLine("Enter word(s) manually (separated by commas if multiple): ");
+                        case Constants.Manual:
+                            Console.WriteLine(Constants.CaseMMsg);
                             ExecuteScrambledWordsManualEntryScenario();
                             break;
                         default:
-                            Console.WriteLine("The entered option was not recognized.");
+                            Console.WriteLine(Constants.CaseErrorMsg);
                             break;
                     }
 
-                    Console.ReadLine();
+                    
 
 
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("The program will be terminated." + ex.Message);
+                    Console.WriteLine(Constants.TerminationMsg + ex.Message);
 
                 }
-                Console.WriteLine("Continue? Y/N");
-                String cont = Console.ReadLine() ?? throw new Exception("String is empty");
+                Console.WriteLine(Constants.ContinueMsg);
+                String cont = Console.ReadLine() ?? throw new Exception(Constants.ContinueErrorMsg);
                 switch (cont.ToUpper())
                 {
-                    case "Y":
+                    case Constants.Yes:
                         continues = true;
                         break;
-                    case "N":
+                    case Constants.No:
                         continues = false;
                         break;
                     default:
-                        Console.WriteLine("The entered option was not recognized.");
+                        Console.WriteLine(Constants.CaseErrorMsg);
                         break;
                 }
             }
@@ -75,7 +75,7 @@ namespace WordUnscrambler
         {
             string userInput = Console.ReadLine();
            
-            string[] scrambledWords = userInput.Split(',');
+            string[] scrambledWords = userInput.Split(Constants.Split);
             
                 DisplayMatchedUnscrambledWords(scrambledWords);
             
@@ -85,7 +85,7 @@ namespace WordUnscrambler
         private static void DisplayMatchedUnscrambledWords(string[] scrambledWords)
         {
 
-            string path = @"C:\Users\Misha\Downloads\WordUnscrambler_Startup_Code\WordUnscrambler\wordlist.txt";
+            string path = Constants.Path;
             
             //read the list of words from the system file. 
             string[] wordList = _fileReader.Read(path);
@@ -96,11 +96,11 @@ namespace WordUnscrambler
             if (matchedWords.Any()){
                 foreach (var match in matchedWords)
                 {
-                    Console.WriteLine("your word: "+match.ScrambledWord+ " Matched Word: " +  match.Word);
+                    Console.WriteLine(Constants.ScrambledInput+match.ScrambledWord+Constants.MatchedOutput+match.Word);
                 }
             }
             else{ 
-                Console.WriteLine("no matches found");
+                Console.WriteLine(Constants.NoMatchMsg);
             }
         }
     }

@@ -22,8 +22,8 @@ namespace WordUnscrambler
                     }
                     else
                     {
-                        var scrambledWordArray = scrambledWord.ToCharArray();
-                        var wordArray = word.ToCharArray();
+                        char[] scrambledWordArray = scrambledWord.ToCharArray();
+                        char[] wordArray = word.ToCharArray();
                         Array.Sort(scrambledWordArray);
                         Array.Sort(wordArray);
                         var sortedScrambled = new String(scrambledWordArray);
