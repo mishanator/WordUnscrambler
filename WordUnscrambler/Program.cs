@@ -14,53 +14,71 @@ namespace WordUnscrambler
         static void Main(string[] args)
 
         {
-            bool continues = true;
-            while (continues)
+            bool go = true;
+            while (go)
             {
-                try
+                bool continues = true;
+                do
                 {
-                    Console.WriteLine(Constants.HomeMsg);
-
-                    String option = Console.ReadLine() ?? throw new Exception(Constants.EmptyStringErrorMsg);
-
-                    switch (option.ToUpper())
+                    try
                     {
-                        case Constants.File:
-                            Console.WriteLine(Constants.CaseFMsg);
-                            ExecuteScrambledWordsInFileScenario();
+                        Console.WriteLine(Constants.HomeMsg);
+
+                        String option = Console.ReadLine() ?? throw new Exception(Constants.EmptyStringErrorMsg);
+
+                        switch (option.ToUpper())
+                        {
+                            case Constants.File:
+                                Console.WriteLine(Constants.CaseFMsg);
+                                ExecuteScrambledWordsInFileScenario();
+                                continues = false;
+                                break;
+                            case Constants.Manual:
+                                Console.WriteLine(Constants.CaseMMsg);
+                                ExecuteScrambledWordsManualEntryScenario();
+                                continues = false;
+                                break;
+                            default:
+                                Console.WriteLine(Constants.CaseErrorMsg);
+                                continues = true;
+                                break;
+                        }
+
+
+                    }
+
+
+
+
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(Constants.TerminationMsg + ex.Message);
+
+                    }
+                }
+                while (continues == true);
+                bool retry = true;
+                do
+                {
+                    Console.WriteLine(Constants.ContinueMsg);
+                    String cont = Console.ReadLine() ?? throw new Exception(Constants.ContinueErrorMsg);
+                    switch (cont.ToUpper())
+                    {
+                        case Constants.Yes:
+                            continues = true;
+                            retry = false;
                             break;
-                        case Constants.Manual:
-                            Console.WriteLine(Constants.CaseMMsg);
-                            ExecuteScrambledWordsManualEntryScenario();
+                        case Constants.No:
+                            go = false;
+                            retry = false;
                             break;
                         default:
                             Console.WriteLine(Constants.CaseErrorMsg);
+                            retry = true;
                             break;
                     }
-
-                    
-
-
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(Constants.TerminationMsg + ex.Message);
-
-                }
-                Console.WriteLine(Constants.ContinueMsg);
-                String cont = Console.ReadLine() ?? throw new Exception(Constants.ContinueErrorMsg);
-                switch (cont.ToUpper())
-                {
-                    case Constants.Yes:
-                        continues = true;
-                        break;
-                    case Constants.No:
-                        continues = false;
-                        break;
-                    default:
-                        Console.WriteLine(Constants.CaseErrorMsg);
-                        break;
-                }
+                while (retry == true);
             }
         }
 
