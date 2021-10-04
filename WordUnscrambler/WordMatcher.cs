@@ -16,9 +16,9 @@ namespace WordUnscrambler
                 foreach (var word in wordList)
                 {
                     //scrambledWord already matches word
-                    if (scrambledWord.Equals(word, StringComparison.OrdinalIgnoreCase)) {
+                    if (scrambledWord.Equals(word, StringComparison.OrdinalIgnoreCase))
+                    { 
                         matchedWords.Add(BuildMatchedWord(scrambledWord, word));
-                       
                     }
                     else
                     {
@@ -29,7 +29,9 @@ namespace WordUnscrambler
                         var sortedScrambled = new String(scrambledWordArray);
                         var sortedWord = new String(wordArray);
                         if (sortedScrambled.Equals(sortedWord, StringComparison.OrdinalIgnoreCase))
+                        {
                             matchedWords.Add(BuildMatchedWord(scrambledWord, word));
+                        }
                     }
                 }
                 return matchedWords;

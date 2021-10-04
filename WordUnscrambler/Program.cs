@@ -103,10 +103,10 @@ namespace WordUnscrambler
         private static void DisplayMatchedUnscrambledWords(string[] scrambledWords)
         {
 
-            string path = Constants.Path;
+           
             
             //read the list of words from the system file. 
-            string[] wordList = _fileReader.Read(path);
+            string[] wordList = _fileReader.Read(Constants.Path);
             
             //call a word matcher method to get a list of structs of matched words.
             List<MatchedWord> matchedWords = _wordMatcher.Match(scrambledWords, wordList);
